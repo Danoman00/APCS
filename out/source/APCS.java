@@ -83,7 +83,7 @@ public void draw()
   image(imgVar3, imgVar3.width, imgVar3.height);
   text("posterize", 5 * imgVar3.width / 4, (2 * imgVar3.height) - 10);
   
-  save("2x2.png");
+  //save("2x2.png");
 }
   public void settings() {  size(1, 1); }
   static public void main(String[] passedArgs) {
