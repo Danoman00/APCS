@@ -1,19 +1,3 @@
-import processing.core.*; 
-import processing.data.*; 
-import processing.event.*; 
-import processing.opengl.*; 
-
-import java.util.HashMap; 
-import java.util.ArrayList; 
-import java.io.File; 
-import java.io.BufferedReader; 
-import java.io.PrintWriter; 
-import java.io.InputStream; 
-import java.io.OutputStream; 
-import java.io.IOException; 
-
-public class APCS extends PApplet {
-
 /*******************************************
  *                                         * 
  * Image Filter Project starter code       *
@@ -40,15 +24,15 @@ PImage img;
 
 /***********************************/
 
-public void setup() 
+void setup() 
 {
-  
+  size(800, 480);
   background(185);
   textAlign(LEFT);
   textSize(16); 
 }
 
-public void draw()
+void draw()
 {
 
   background(185);
@@ -87,7 +71,7 @@ public void draw()
   noStroke();
 
   if (Grayscale)
-    fill(0xffFFFF7D);    //Effect on means a yellow lighted button
+    fill(#FFFF7D);    //Effect on means a yellow lighted button
   else
     fill(255);
   rect(660, 200, 130, 40, 10);
@@ -95,7 +79,7 @@ public void draw()
   text("Grayscale", 680, 225);
   
   if (Effect1)
-    fill(0xffFFFF7D);    //Effect on means a yellow lighted button
+    fill(#FFFF7D);    //Effect on means a yellow lighted button
   else
     fill(255);
   rect(660, 250, 130, 40, 10);
@@ -103,7 +87,7 @@ public void draw()
   text("Invert", 680, 275);
 
   if (Effect2)
-    fill (0xffFFFF7D);     //Effect on means a yellow lighted button 
+    fill (#FFFF7D);     //Effect on means a yellow lighted button 
   else
     fill(255); 
   rect(660, 300, 130, 40, 10);
@@ -111,7 +95,7 @@ public void draw()
   text("Add Noise", 680, 325);
 
   if (Effect3)
-    fill (0xffFFFF7D);    //Effect on means a yellow lighted button
+    fill (#FFFF7D);    //Effect on means a yellow lighted button
   else
     fill(255);   
   rect(660, 350, 130, 40, 10);
@@ -130,12 +114,12 @@ public void draw()
     
     if (picWidth > 640)
     {
-      picHeight = (int)(picHeight*(640.0f/picWidth));
+      picHeight = (int)(picHeight*(640.0/picWidth));
       picWidth = 640;
     }
     if (picHeight > 480)
     {
-      picWidth = (int)(picWidth*(480.0f/picHeight));
+      picWidth = (int)(picWidth*(480.0/picHeight));
       picHeight = 480;
     }
     image(img, 0, 0, picWidth, picHeight);
@@ -153,8 +137,8 @@ public void draw()
       int i = picStart;
       while (i < picEnd) 
       {
-        int c = pixels[i];
-        float gray = (red(c)+green(c)+blue(c))/3.0f;  //average the RGB colors
+        color c = pixels[i];
+        float gray = (red(c)+green(c)+blue(c))/3.0;  //average the RGB colors
         pixels[i] = color(gray, gray, gray);
         i = i + 1;
         if (i % width >= picWidth)        // This will ignore anything on the line that 
@@ -168,7 +152,7 @@ public void draw()
       int i = picStart;
       while (i < picEnd)
       {
-        int c = pixels[i];
+        color c = pixels[i];
         float red = 255 - red(c);
         float green = 255 - green(c);
         float blue = 255 - blue(c);
@@ -185,10 +169,10 @@ public void draw()
       int i = picStart;
       while (i < picEnd)
       {
-        int c = pixels[i];
-        float red = random(50.0f) + red(c);
-        float green = random(50.0f) + green(c);
-        float blue = random(50.0f) + blue(c);
+        color c = pixels[i];
+        float red = random(50.0) + red(c);
+        float green = random(50.0) + green(c);
+        float blue = random(50.0) + blue(c);
         pixels[i] = color(red, green, blue);
         i = i + 1;
         if (i % width >= picWidth)
@@ -209,12 +193,12 @@ public void draw()
   noStroke();
 }
 
-public void mouseClicked() {
+void mouseClicked() {
   
   redraw();
 }
 
-public void mousePressed()
+void mousePressed()
 {
   //The following define the clickable bounding boxes for any buttons used.
   //Note that these boundaries should match those drawn in the draw() function.
@@ -252,7 +236,7 @@ public void mousePressed()
   redraw();
 }
 
-public void infileSelected(File selection) 
+void infileSelected(File selection) 
 {
   if (selection == null) 
   {
@@ -271,7 +255,7 @@ public void infileSelected(File selection)
   }
 }
 
-public void outfileSelected(File selection) 
+void outfileSelected(File selection) 
 {
   if (selection == null) 
   {
@@ -286,15 +270,5 @@ public void outfileSelected(File selection)
     save(selection.getAbsolutePath()+".png");
     redraw();
     loop();
-  }
-}
-  public void settings() {  size(800, 480); }
-  static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "APCS" };
-    if (passedArgs != null) {
-      PApplet.main(concat(appletArgs, passedArgs));
-    } else {
-      PApplet.main(appletArgs);
-    }
   }
 }
