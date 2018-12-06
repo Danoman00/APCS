@@ -1,26 +1,3 @@
-import processing.core.*; 
-import processing.data.*; 
-import processing.event.*; 
-import processing.opengl.*; 
-
-import ddf.minim.spi.*; 
-import ddf.minim.signals.*; 
-import ddf.minim.*; 
-import ddf.minim.analysis.*; 
-import ddf.minim.ugens.*; 
-import ddf.minim.effects.*; 
-
-import java.util.HashMap; 
-import java.util.ArrayList; 
-import java.io.File; 
-import java.io.BufferedReader; 
-import java.io.PrintWriter; 
-import java.io.InputStream; 
-import java.io.OutputStream; 
-import java.io.IOException; 
-
-public class APCS extends PApplet {
-
 /*******************************************
  *                                         * 
  * Audio Processing starter code           *
@@ -31,12 +8,12 @@ public class APCS extends PApplet {
  *                                         *
  *******************************************/
 
-
-
-
-
-
-
+import ddf.minim.spi.*;
+import ddf.minim.signals.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.ugens.*;
+import ddf.minim.effects.*;
 
 Minim minim;
 AudioPlayer song;
@@ -44,9 +21,9 @@ float[] oldSamp;
 String songFileName = "BasicDrum.mp3";
 final int BUFFERSIZE = 4096 * 4;
 
-public void setup()
+void setup()
 {
-  
+  size(640,400);
   stroke(255);
   textSize(32);
     
@@ -58,15 +35,15 @@ public void setup()
 }
 
 
-public void draw()
+void draw()
 {
   /* Draw the Visualizer */
   background(0);
-  fill(0xff000055);
+  fill(#000055);
   rect(0,0,640,200);
-  fill(0xff550000);
+  fill(#550000);
   rect(0,200,640,200);
-  fill(0xffBBBB00);
+  fill(#BBBB00);
   text("Left Channel", 50, 50);
   text("Right Channel", 50, 250);
   for (int i = 0; i < song.bufferSize() - 1; i++)
@@ -78,7 +55,7 @@ public void draw()
 
 class MyEffect implements AudioEffect
 {
-  public void process(float[] samp)
+  void process(float[] samp)
   {
     float[] newSamp = samp.clone();  //create a copy to alter
     int j = 0; 
@@ -92,20 +69,10 @@ class MyEffect implements AudioEffect
     arrayCopy(newSamp, samp);
   }
  
-  public void process(float[] left, float[] right) 
+  void process(float[] left, float[] right) 
   //stereo has left and right channels
   {
     process(left);
     process(right);
-  }
-}
-  public void settings() {  size(640,400); }
-  static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "APCS" };
-    if (passedArgs != null) {
-      PApplet.main(concat(appletArgs, passedArgs));
-    } else {
-      PApplet.main(appletArgs);
-    }
   }
 }
