@@ -1,21 +1,3 @@
-import processing.core.*; 
-import processing.data.*; 
-import processing.event.*; 
-import processing.opengl.*; 
-
-import processing.sound.*; 
-
-import java.util.HashMap; 
-import java.util.ArrayList; 
-import java.io.File; 
-import java.io.BufferedReader; 
-import java.io.PrintWriter; 
-import java.io.InputStream; 
-import java.io.OutputStream; 
-import java.io.IOException; 
-
-public class APCS extends PApplet {
-
 /*******************************************
  *                                         * 
  * Processiano (Processing Piano)          *
@@ -26,25 +8,25 @@ public class APCS extends PApplet {
  *                                         *
  *******************************************/
 
-
+import processing.sound.*;
  
 float C4, D4, E4, F4, G4, A4, B4;
 char currentNote;
 SinOsc soundOutput;
 
-public void setup()
+void setup()
 {
     // Fill in note frequencies here 
     
-    C4 = 261.626f;     //Middle C (C4)
-    D4 = 293.665f;
-    E4 = 329.628f;
-    F4 = 349.228f;
-    G4 = 391.995f;
-    A4 = 440.000f;
-    B4 = 493.883f;
+    C4 = 261.626;     //Middle C (C4)
+    D4 = 293.665;
+    E4 = 329.628;
+    F4 = 349.228;
+    G4 = 391.995;
+    A4 = 440.000;
+    B4 = 493.883;
        
-    
+    size(200,200);
     textSize(64);
     fill(0);
     currentNote = '-';
@@ -53,13 +35,13 @@ public void setup()
     soundOutput.freq(0);      //start playing nothing (0 frequency)
 }
 
-public void draw() 
+void draw() 
 {
     background(255);
     text(currentNote, width/2-18, height/2+18);
 }
 
-public void keyPressed()
+void keyPressed()
 {
     if (key != CODED)              //change display
       currentNote = key;           //only if necessary
@@ -93,7 +75,7 @@ public void keyPressed()
       soundOutput.freq(B4 * 2);
 }
 
-public void keyReleased()
+void keyReleased()
 {
     if (key == currentNote)
     {
@@ -102,13 +84,3 @@ public void keyReleased()
     }
 }
  
-  public void settings() {  size(200,200); }
-  static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "APCS" };
-    if (passedArgs != null) {
-      PApplet.main(concat(appletArgs, passedArgs));
-    } else {
-      PApplet.main(appletArgs);
-    }
-  }
-}
