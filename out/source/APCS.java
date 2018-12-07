@@ -19,7 +19,7 @@ public class APCS extends PApplet {
  * Image Filter Project starter code       *
  *                                         *
  * UTeach CSP                              *
- * Bradley Beth                            *
+ * Bradkey Beth                            *
  * rev. 20160927                           * 
  *                                         *
  * Search this source code for the phrase  *
@@ -68,12 +68,12 @@ public void draw()
   fill(255);
   rect(660, 50, 130, 40, 10);
   fill(55);
-  text("Load Picture", 675, 75);
+  text("Load Picture (L)", 675, 75);
 
   fill(255);
   rect(660, 100, 130, 40, 10);
   fill(55);
-  text("Save Picture", 675, 125);
+  text("Save Picture (S)", 675, 125);
 
   stroke(0);
   line(650,150,800,150);
@@ -92,7 +92,7 @@ public void draw()
     fill(255);
   rect(660, 200, 130, 40, 10);
   fill(55);
-  text("Grayscale", 680, 225);
+  text("Grayscale (G)", 680, 225);
   
   if (Effect1)
     fill(0xffFFFF7D);    //Effect on means a yellow lighted button
@@ -100,7 +100,7 @@ public void draw()
     fill(255);
   rect(660, 250, 130, 40, 10);
   fill(55);
-  text("Invert", 680, 275);
+  text("Invert Color (I)", 680, 275);
 
   if (Effect2)
     fill (0xffFFFF7D);     //Effect on means a yellow lighted button 
@@ -108,7 +108,7 @@ public void draw()
     fill(255); 
   rect(660, 300, 130, 40, 10);
   fill(55);
-  text("Add Noise", 680, 325);
+  text("Add Noise (N)", 680, 325);
 
   if (Effect3)
     fill (0xffFFFF7D);    //Effect on means a yellow lighted button
@@ -116,7 +116,7 @@ public void draw()
     fill(255);   
   rect(660, 350, 130, 40, 10);
   fill(55);
-  text("Effect Three", 680, 375);
+  text("Posterize (P)", 680, 375);
 
   noStroke();
   textSize(16);
@@ -196,9 +196,8 @@ public void draw()
       }
     }
     
-    if (Effect3)
-    {
-      // complete this section
+    if (Effect3) {
+      filter(POSTERIZE, 4);
     }
     
     updatePixels(); 
@@ -212,6 +211,27 @@ public void draw()
 public void mouseClicked() {
   
   redraw();
+}
+
+public void keyPressed() {
+  if (key == 'l') {
+    selectInput("Select a file to process:", "infileSelected");
+  }
+  if (key == 's') {
+    selectOutput("Select a file to write to:", "outfileSelected");
+  }
+  if (key == 'g') {
+    Grayscale = !Grayscale;
+  }
+  if (key == 'i') {
+    Effect1 = !Effect1;    
+  }
+  if (key == 'n') {
+    Effect2 = !Effect2;
+  }
+  if (key == 'p') {
+    Effect3 = !Effect3;
+  }
 }
 
 public void mousePressed()
