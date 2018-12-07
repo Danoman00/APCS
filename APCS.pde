@@ -84,7 +84,7 @@ void draw()
     fill(255);
   rect(660, 250, 130, 40, 10);
   fill(55);
-  text("Invert", 680, 275);
+  text("Invert Color", 680, 275);
 
   if (Effect2)
     fill (#FFFF7D);     //Effect on means a yellow lighted button 
@@ -100,7 +100,7 @@ void draw()
     fill(255);   
   rect(660, 350, 130, 40, 10);
   fill(55);
-  text("Effect Three", 680, 375);
+  text("Reverse Vertically", 680, 375);
 
   noStroke();
   textSize(16);
