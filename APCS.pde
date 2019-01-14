@@ -223,7 +223,7 @@ void mousePressed()
   //The following define the clickable bounding boxes for any buttons used.
   //Note that these boundaries should match those drawn in the draw() function.
   
-  if (mouseX>660 && mouseX<790 && mouseY>50 && mouseY<90)
+  if (mouseX>660 && mouseX<790 && mzouseY>50 && mouseY<90)
   {
     selectInput("Select a file to process:", "infileSelected");
   }
